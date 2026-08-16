@@ -291,7 +291,7 @@ Each business service uses a `CommandLineRunner` to preload test records.
 
 ### Eureka Dashboard
 
-![Eureka Dashboard](C:\Users\pramo\Documents\IJSE\SPMS-main\docs\screenshots\Screenshot 2026-08-16 234503.png)
+<img alt="Eureka Dashboard" src="./docs/screenshots/Screenshot%202026-08-16%20234503.png"/>
 
 > If the image does not appear, confirm that the screenshot filename and capitalization match the file in the repository.
 
