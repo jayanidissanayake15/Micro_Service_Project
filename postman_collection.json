@@ -1,0 +1,382 @@
+{
+	"info": {
+		"_postman_id": "spms-srilanka-postman-collection-2026",
+		"name": "Smart Parking Management System (SPMS) — Sri Lanka API Collection",
+		"description": "Postman Collection for SPMS Microservices with authentic Sri Lankan user names, vehicle plate numbers (WP/SP/CP), and parking locations (Colombo, Kandy, Galle). Routes via API Gateway on port 8080.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. User Service",
+			"item": [
+				{
+					"name": "Register User (Driver - Ruwan Jayawardena)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Ruwan Jayawardena\",\n  \"email\": \"ruwan.jayawardena@spms.lk\",\n  \"password\": \"srilankaPass123\",\n  \"role\": \"DRIVER\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/register",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "users", "register"]
+						}
+					}
+				},
+				{
+					"name": "Register User (Owner - Dilani Silva)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Dilani Silva\",\n  \"email\": \"dilani.silva@spms.lk\",\n  \"password\": \"ownerSecret456\",\n  \"role\": \"OWNER\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/register",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "users", "register"]
+						}
+					}
+				},
+				{
+					"name": "Login User (Kasun Perera)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"john.doe@example.com\",\n  \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/login",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "users", "login"]
+						}
+					}
+				},
+				{
+					"name": "Get User By ID (Kasun Perera)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/users/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "users", "1"]
+						}
+					}
+				},
+				{
+					"name": "Update User Profile (Kasun Perera)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Kasun Wickramasinghe Perera\",\n  \"email\": \"john.doe@example.com\",\n  \"role\": \"DRIVER\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "users", "1"]
+						}
+					}
+				},
+				{
+					"name": "Get User Booking History (Colombo/Kandy)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/users/1/history",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "users", "1", "history"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "2. Vehicle Service",
+			"item": [
+				{
+					"name": "Register Vehicle (WP CAB-7788)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"plateNumber\": \"WP-CAB-7788\",\n  \"type\": \"SEDAN\",\n  \"userId\": 1,\n  \"status\": \"OUT\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/vehicles",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "vehicles"]
+						}
+					}
+				},
+				{
+					"name": "Get Vehicle By ID (WP-CAB-1234)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/vehicles/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "vehicles", "1"]
+						}
+					}
+				},
+				{
+					"name": "Update Vehicle Info",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"plateNumber\": \"CAB-1234\",\n  \"type\": \"HYBRID_SEDAN\",\n  \"status\": \"OUT\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/vehicles/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "vehicles", "1"]
+						}
+					}
+				},
+				{
+					"name": "Simulate Vehicle Entry (Colombo Fort Garage)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/vehicles/1/entry",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "vehicles", "1", "entry"]
+						}
+					}
+				},
+				{
+					"name": "Simulate Vehicle Exit (Colombo Fort Garage)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/vehicles/1/exit",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "vehicles", "1", "exit"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "3. Parking Space Service",
+			"item": [
+				{
+					"name": "List All Sri Lankan Parking Spaces",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/parking",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "parking"]
+						}
+					}
+				},
+				{
+					"name": "Filter Spaces (Colombo & AVAILABLE)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/parking?location=Downtown&status=AVAILABLE",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "parking"],
+							"query": [
+								{ "key": "location", "value": "Downtown" },
+								{ "key": "status", "value": "AVAILABLE" }
+							]
+						}
+					}
+				},
+				{
+					"name": "Create Parking Space (Bambalapitiya Hub)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"location\": \"Liberty Plaza Underground - Bambalapitiya\",\n  \"zone\": \"Zone-B1\",\n  \"ownerId\": 2,\n  \"status\": \"AVAILABLE\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/parking",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "parking"]
+						}
+					}
+				},
+				{
+					"name": "Reserve Parking Space (Downtown Garage A)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/parking/1/reserve",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "parking", "1", "reserve"]
+						}
+					}
+				},
+				{
+					"name": "Release Parking Space (Downtown Garage A)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/parking/1/release",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "parking", "1", "release"]
+						}
+					}
+				},
+				{
+					"name": "Simulate IoT Sensor Update (OCCUPIED)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"status\": \"OCCUPIED\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/parking/1/status",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "parking", "1", "status"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "4. Payment Service",
+			"item": [
+				{
+					"name": "Process Card Payment (Kasun Perera)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Content-Type", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"userId\": 1,\n  \"vehicleId\": 1,\n  \"amount\": 1500.00,\n  \"cardNumber\": \"4532718892101234\",\n  \"expiryDate\": \"12/28\",\n  \"cvv\": \"888\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/payments/process",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "payments", "process"]
+						}
+					}
+				},
+				{
+					"name": "Get Transaction By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/payments/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "payments", "1"]
+						}
+					}
+				},
+				{
+					"name": "Get Digital Receipt (RCP-INIT001)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/payments/receipt/RCP-INIT001",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "payments", "receipt", "RCP-INIT001"]
+						}
+					}
+				},
+				{
+					"name": "List User Transactions (Kasun Perera)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/payments/user/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "payments", "user", "1"]
+						}
+					}
+				}
+			]
+		}
+	]
+}

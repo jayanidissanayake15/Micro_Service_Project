@@ -1,0 +1,46 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/api/users, /api/users/**
+          filters:
+            - RewritePath=/api/users(?<segment>/?.*), /users$\{segment}
+
+        - id: vehicle-service
+          uri: lb://vehicle-service
+          predicates:
+            - Path=/api/vehicles, /api/vehicles/**
+          filters:
+            - RewritePath=/api/vehicles(?<segment>/?.*), /vehicles$\{segment}
+
+        - id: parking-space-service
+          uri: lb://parking-space-service
+          predicates:
+            - Path=/api/parking, /api/parking/**
+          filters:
+            - RewritePath=/api/parking(?<segment>/?.*), /parking-spaces$\{segment}
+
+        - id: payment-service
+          uri: lb://payment-service
+          predicates:
+            - Path=/api/payments, /api/payments/**
+          filters:
+            - RewritePath=/api/payments(?<segment>/?.*), /payments$\{segment}
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: kaveesha-server:api-gateway:8080
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
